@@ -8,7 +8,7 @@ const UserDetails = () => {
     const [usersArr, setUsersArr] = useState([]);
 
     useEffect(() => {
-        let url = "http://localhost:8000/user-form";
+        let url = "https://stack-fusion-backend.onrender.com/user-form";
         const getData = async () => {
             const response = await axios.get(url);
             // console.log(response.data);

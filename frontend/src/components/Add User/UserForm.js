@@ -57,9 +57,9 @@ const UserForm = () => {
 
     // POSTING USER DETAILS
     const addUser = async (userData) => {
-        let URl = "http://localhost:8000/user-form";
+        let url = "https://stack-fusion-backend.onrender.com/user-form";
         try {
-            const userDetails = await axios.post(`${URl}`, userData);
+            const userDetails = await axios.post(`${url}`, userData);
             console.log(userDetails);
             navigate("/userDetails");
         } catch (error) {
