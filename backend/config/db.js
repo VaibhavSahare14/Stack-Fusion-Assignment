@@ -1,12 +1,8 @@
 const mongoose = require("mongoose");
 
-// const db = "mongodb://TodoAPI:TodoAPI@ac-kffcgut-shard-00-00.bhuy98p.mongodb.net:27017,ac-kffcgut-shard-00-01.bhuy98p.mongodb.net:27017,ac-kffcgut-shard-00-02.bhuy98p.mongodb.net:27017/?ssl=true&replicaSet=atlas-13ahi6-shard-0&authSource=admin&retryWrites=true&w=majority";
-
-const db = "mongodb://localhost:27017/assignmentSF"
-
 const connectDB = async () => {
     try {
-        await mongoose.connect(db, {
+        await mongoose.connect(process.env.DB_URL, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });

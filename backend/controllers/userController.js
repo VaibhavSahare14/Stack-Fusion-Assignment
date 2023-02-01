@@ -25,16 +25,32 @@ exports.addUser = async (req, res) => {
     });
 
     try {
+        // Checking EMAIL
         if (await User.findOne({ email })) {
             return res
                 .status(404)
                 .json({ message: "Email is already exists" });
         }
+
+        // VALIDATING PHONE NUMBER
+        const phoneNumberPattern = /^[6-9]{1}[0-9]{9}$/;
+
+        if (!phoneNumberPattern.test(phoneNumber)) {
+            return res.status(400).json({
+                message: "Invalid phone number format",
+            });
+        }
+
+        if (await User.findOne({ phoneNumber })) {
+            return res
+                .status(404)
+                .json({ message: "Phone Number is already exists" });
+        }
         const user = await newUser.save();
         res.status(200).json({ user });
         // console.log(user.email);
 
-        // Sending Mail
+        // SENDING MAIL
         transporter.sendMail({
             from: '"Shital Sahare" <process.env.EMAIL_ADDRESS>',
             to: user.email,
